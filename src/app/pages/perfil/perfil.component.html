@@ -1,0 +1,57 @@
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Mi Perfil de Usuario</h4>
+                <h6 class="card-subtitle">Ajustes..</h6>
+
+                <form class="form p-t-20" [formGroup]="perfilForm" (submit)="actualizarPerfil()">
+                    <div class="form-group">
+                        <label for="exampleInputuname">Usuario</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input type="text" class="form-control" id="exampleInputuname" placeholder="Nombre de Usuario" formControlName="nombre">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Direccion de correo</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese el email" formControlName="email" [readOnly]="usuario.google">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-block waves-effect waves-light m-r-10" [disabled]="perfilForm.invalid">
+                        <li class="fa fa-save"></li>
+                        Guardar cambios
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Avatar</h4>
+                <h6 class="card-subtitle">Imagen del usuario</h6>
+
+                <div class="img-container text-center">
+                    <img *ngIf="!imgTemp" [src]="usuario.imagenUrl" class="img-avatar">
+                    <img *ngIf="imgTemp" [src]="imgTemp" class="img-avatar">
+                </div>
+
+                <input type="file" (change)="cambiarImagen($event.target.files[0])">
+
+                <br>
+                <br>
+
+                <button type="button" class="btn btn-success btn-block waves-effect waves-light m-r-10" [disabled]="!imagenSubir" (click)="subirImagen()">
+                    <li class="fa fa-save"></li>
+                    Cambiar Imagen
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
